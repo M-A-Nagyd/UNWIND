@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Popular Artists, Albums & Playlists</title>
+    <link rel="stylesheet" href="/static/home.css">
+    <style>
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+        .artist-card, .album, .playlist {
+            margin: 20px;
+            text-align: center;
+        }
+        .artist-card img, .album img, .playlist img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .artist-card a, .album a, .playlist a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+        }
+        .artist-card a:hover, .album a:hover, .playlist a:hover {
+            color: #dfe4e9;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="{{ url_for('create_playlist') }}" class="create-playlist-btn">Create Playlist</a>
+    </div>
+    <div class="container">
+        <h2>Popular Artists</h2>
+        <div class="image-grid">
+            {% for artist in artists %}
+                <div class="artist-card">
+                    <a href="/artist/{{ artist.artist_id }}">
+                        <img src="/static/Artist photos/{{ artist.image }}" alt="{{ artist.name }}">
+                    </a>
+                    <br>
+                    <a href="/artist/{{ artist.artist_id }}">
+                        <span>{{ artist.name }}</span>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <h2>Popular Albums</h2>
+        <div class="image-grid">
+            {% for album in albums %}
+                <div class="album">
+                    <a href="/album/{{ album.album_id }}">
+                        <img src="/static/Album photos/{{ album.image }}" alt="{{ album.album_name }}">
+                    </a>
+                    <br>
+                    <a href="/album/{{ album.album_id }}">
+                        <span>{{ album.album_name }}</span>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <h2>Playlists</h2>
+        <div class="image-grid">
+            {% for playlist in playlists %}
+                <div class="playlist">
+                    <a href="/playlist/{{ playlist.playlist_id }}">
+                        <img src="/static/Album photos/{{ playlist.image }}" alt="{{ playlist.playlist_name }}">
+                    </a>
+                    <br>
+                    <a href="/playlist/{{ playlist.playlist_id }}">
+                        <span>{{ playlist.playlist_name }}</span>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <script>
+                alert("{{ messages[0] }}");  // Display the first flash message as a pop-up
+            </script>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

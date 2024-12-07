@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <div class="main">
+        <h1>♫UNWIND♫</h1>
+        <form action="/submit" method="POST">
+            <input type="text" id="email" name="email" 
+                placeholder="Enter your Email" required>
+            <input type="password" id="password" name="password" 
+                placeholder="Enter your Password" required>
+
+            <div class="wrap">
+                <button type="submit">
+                    Submit
+                </button>
+            </div>
+        </form>
+        <div class="signup">
+            Don't have an account? <a href="/new_user" class="link">Sign up for Unwind</a>
+        </div>
+    </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <script>
+                alert("{{ messages[0] }}");  // Display the first flash message as a pop-up
+            </script>
+        {% endif %}
+    {% endwith %}
+
+</body>
+
+</html>

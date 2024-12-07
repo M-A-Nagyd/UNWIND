@@ -1,0 +1,131 @@
+/* Basic styling for the body */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('your-image-path.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+/* Container for the entire content */
+.container {
+    width: 320px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.logo img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+/* Sidebar menu styling */
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.menu li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.menu li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu li i {
+    margin-right: 10px;
+}
+
+/* Albums section styling */
+.albums {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.album {
+    text-align: center;
+}
+
+.album img {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.album:hover img {
+    transform: scale(1.05);
+}
+
+.album p {
+    margin: 5px 0;
+    font-size: 12px;
+}
+
+/* Music player styling */
+.player {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.player img {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.player .info {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.player .info p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.player .controls {
+    display: flex;
+    align-items: center;
+}
+
+.player .controls i {
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+.player .controls i:hover {
+    color: #1DB954;
+}
+
+.player p {
+    font-size: 12px;
+    margin-left: 10px;
+}

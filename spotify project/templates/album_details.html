@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album Details - {{ album.album_name }}</title>
+    <link rel="stylesheet" href="/static/home.css">
+    <style>
+        .track-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .track-item {
+            margin-bottom: 10px;
+        }
+        .album-image {
+            width: 200px; /* Album image size */
+            height: 200px; /* Album image size */
+            border-radius: 50%; /* Circular shape */
+            object-fit: cover; /* Ensures the image covers the circle evenly */
+        }
+        .album-track-image {
+            width: 100px; /* Track album image size */
+            height: 100px; /* Track album image size */
+            border-radius: 50%; /* Circular shape */
+            object-fit: cover; /* Ensures the image covers the circle evenly */
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ album.album_name }}</h1>
+        <div class="album-cover">
+            <img src="/static/Album photos/{{ album.album_image }}" alt="{{ album.album_name }}" class="album-image">
+        </div>
+        <h2>Tracks</h2>
+        <ul class="track-list">
+            {% for track in music %}
+                <li class="track-item">
+                    <span>{{ track.track_name }}</span>
+                    <button onclick="playSong('/static/songs/{{ track.file_path }}', '/static/Album photos/{{ track.album_image }}')">Play</button>
+                </li>
+                <form action="{{ url_for('like_song') }}" method="post" style="display:inline;">
+                    <input type="hidden" name="track_id" value="{{ track.id }}">
+                    <button type="submit">Like</button>
+                </form>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="albumCoverContainer" class="album-cover">
+        <img id="albumCover" class="album-track-image" alt="Album Cover">
+    </div>
+    <audio id="musicPlayer" controls style="display: none;">
+        <source id="audioSource" type="audio/mpeg">
+    </audio>
+    <script>
+        function playSong(filePath, albumImagePath) {
+            var player = document.getElementById('musicPlayer');
+            var source = document.getElementById('audioSource');
+            var albumCover = document.getElementById('albumCover');
+            
+            // Update the source of the audio player and album cover image
+            source.src = filePath;
+            albumCover.src = albumImagePath;
+
+            // Display both the audio player and album cover
+            player.style.display = 'block';
+            albumCover.style.display = 'block';
+
+            // Load and play the track
+            player.load();
+            player.play();
+        }
+    </script>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{ messages[0] }}");  // Display the first flash message as a pop-up
+        </script>
+    {% endif %}
+{% endwith %}
+</body>
+</html>

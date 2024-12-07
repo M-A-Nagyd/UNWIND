@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #fff;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.artists-grid, .albums-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.artist, .album {
+    text-align: center;
+    margin: 10px;
+}
+
+.artist img, .album img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.artist p, .album p {
+    margin-top: 10px;
+    font-size: 1.1em;
+    color: #ccc;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

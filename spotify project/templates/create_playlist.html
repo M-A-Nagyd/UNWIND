@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Playlist</title>
+    <link rel="stylesheet" href="/static/home.css">
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #282828;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            color: white;
+        }
+
+        input[type="text"], input[type="file"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #1db954;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .song-list {
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .song-list label {
+            display: block;
+            padding: 5px;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Create a Playlist</h2>
+        <form action="/create-playlist" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="playlist_name">Playlist Name:</label>
+                <input type="text" name="playlist_name" id="playlist_name" required>
+            </div>
+            <div class="form-group">
+                <label for="playlist_image">Playlist Image:</label>
+                <input type="file" name="playlist_image" id="playlist_image" required>
+            </div>
+            <div class="form-group">
+                <label for="songs">Select Songs:</label>
+                <div class="song-list">
+                    <!-- Display all songs dynamically here -->
+                    {% for song in songs %}
+                        <label>
+                            <input type="checkbox" name="songs" value="{{ song['track_id'] }}"> {{ song['track_name'] }}
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+            <button type="submit">Create Playlist</button>
+        </form>
+    </div>
+</body>
+</html>
